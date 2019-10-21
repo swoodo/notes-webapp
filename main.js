@@ -16,17 +16,144 @@ function revealFilter(e) {
     }
 }
 
-// Notes List delete button
-let deleteBtns = document.querySelectorAll('.notes-list-close-icon');
 
-for (let i=0;i<deleteBtns.length;i++) {
-    deleteBtns[i].addEventListener('click', showDelete);
+
+
+
+// CREATE NEW NOTE
+//////////////////
+const createNoteBtn = document.querySelector('.create-btn');
+const noteTitleInput = document.querySelector('#note-title');
+const noteSubtextInput = document.querySelector('#note-subtext')
+
+createNoteBtn.addEventListener('click', createNote);
+
+function createNote(e) {
+    if (noteTitleInput.value != '') {
+        //create li
+        const li = document.createElement('li');
+        //add 'notes-list-item' class
+        li.className = 'notes-list-item';
+        //create X button
+        const xBtn = document.createElement('div')
+        xBtn.className = 'notes-list-close';
+        //create icon
+        const xIcon = document.createElement('i');
+        xIcon.className = 'fas fa-times notes-list-close-icon';
+        //append to xBtn
+        xBtn.appendChild(xIcon);
+        //append to li
+        li.appendChild(xBtn);
+
+        //create 'are you sure box'
+        const deleteBox = document.createElement('div');
+        deleteBox.className = 'notes-list-item-delete';
+        const deleteTitle = document.createElement('div');
+        deleteTitle.className = 'notes-list-item-delete-title';
+        deleteTitle.appendChild(document.createTextNode('Are you sure?'));
+        //append title to box
+        deleteBox.appendChild(deleteTitle);
+
+        //create delete options
+        const deleteOptions = document.createElement('div');
+        deleteOptions.className = 'notes-list-item-delete-options';
+        const yesOption = document.createElement('div');
+        yesOption.className = 'notes-list-item-delete-yes';
+        yesOption.appendChild(document.createTextNode('Yes'));
+        //append yes option
+        deleteOptions.appendChild(yesOption);
+        //create no option
+        const noOption = document.createElement('div');
+        noOption.className = 'notes-list-item-delete-no';
+        noOption.appendChild(document.createTextNode('No'));
+        //append no option
+        deleteOptions.appendChild(noOption);
+        //append deleteOptions to deleteBox
+        deleteBox.appendChild(deleteOptions);
+
+        //Create Note text
+        const noteText = document.createElement('div');
+        noteText.id = 'notes-list-item-text';
+        //create note title
+        const noteTitle = document.createElement('div');
+        noteTitle.className = 'notes-list-item-title';
+        //append user input title
+        noteTitle.appendChild(document.createTextNode(noteTitleInput.value));
+        //append title box to Note text box
+        noteText.append(noteTitle);
+
+        //create note subtext
+        const noteSubtext = document.createElement('div');
+        noteSubtext.className = 'notes-list-item-subtext';
+        noteSubtext.appendChild(document.createTextNode(noteSubtextInput.value));
+        //append subtext box to Note text box
+        noteText.append(noteSubtext);
+
+        //Create notes footer
+        //create date
+        const dateOfNote = new Date();
+        const dateArr = dateOfNote.toDateString().split(' ');
+        const dateInWords = dateArr[2] + ' ' + dateArr[1] + ' ' + dateArr[3];
+        
+        const notesFooter = document.createElement('div');
+        notesFooter.id = 'notes-list-item-footer';
+        //create date div
+        const dateDiv = document.createElement('div');
+        dateDiv.className = 'date';
+        dateDiv.appendChild(document.createTextNode(dateInWords));
+        //append date div
+        notesFooter.append(dateDiv);
+        //create time div
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'time';
+        //append time div
+        notesFooter.append(timeDiv); 
+
+        //append deletebox to li
+        li.appendChild(deleteBox);
+        //append noteText to li
+        li.appendChild(noteText);
+        //append notesFooter to li
+        li.appendChild(notesFooter);
+
+        //APPEND LI TO UL
+        //get UL in target
+        let myTarget = e.target.parentElement.parentElement.parentElement.parentElement;
+
+        const ul = myTarget.querySelector('#notes-list');
+
+        ul.appendChild(li);
+
+        //clear input
+        noteTitleInput.value = '';
+        noteSubtextInput.value = '';
+
+        // get list of li elements
+        let notesList = document.querySelectorAll('.notes-list-item');
+
+        //taget the new note
+        myTarget = notesList[notesList.length - 1];
+
+        console.log(myTarget);
+        // delete btn event listener
+        let deleteBtn = myTarget.querySelector('.notes-list-close-icon');
+
+        console.log(deleteBtn);
+        
+        deleteBtn.addEventListener('click', showDelete);
+
+    }
+
+    e.preventDefault();
 }
 
 // Show the note list delete menu
 function showDelete(e) {
+    console.log("WORKING");
     let deleteOption = e.target.parentElement.parentElement.querySelector('.notes-list-item-delete');
-    let myTarget = e.target.parentElement.parentElement.parentElement.parentElement; 
+    let myTarget = e.target.parentElement.parentElement; 
+
+    console.log(myTarget);
     
     // make sure clicking the icon
     if (myTarget.classList.contains('notes-list-item')) {

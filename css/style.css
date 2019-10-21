@@ -71,6 +71,7 @@ MORE BOX
 
 .dots:hover {
     cursor: pointer;
+    opacity: 0.5;
 }
 
 .filter-box {
@@ -106,6 +107,12 @@ BUTTONS
 
 .clear-all:hover {
     cursor: pointer;
+    opacity: 0.9;
+
+}
+
+.clear-all:active {
+    background-color: #bf4b4b;
 }
 
 .create-btn {
@@ -123,6 +130,11 @@ BUTTONS
 
 .create-btn:hover {
     cursor: pointer;
+    opacity: 0.9;
+}
+
+.create-btn:active {
+    background-color: #6eb592;
 }
 
 /***************
@@ -164,16 +176,17 @@ NOTES LIST
 
 .notes-list-close {
     position: absolute;
-    right: 0.5em;
-    top: 0.5em;
+    right: 0.8em;
+    top: 0.4em;
     font-size: 2rem;
     color: var(--fontColor);
     z-index: 9999;
 }
 
 
-.notes-list-close:hover {
+.notes-list-close i:hover {
     cursor: pointer;
+    opacity: 0.5;
 }
 
 .notes-list-item {
@@ -196,7 +209,7 @@ NOTES LIST
     align-items: center;
 
     color: white;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 700;
     z-index: 99999;
 }
@@ -204,12 +217,12 @@ NOTES LIST
 .notes-list-item-delete-title {
     flex: 0 0 100%;
     text-align: center;
-    padding-top: 1em;
+    padding-top: 2em;
 }
 
 .notes-list-item-delete-options {
     display: flex;
-    padding-bottom: 1em;
+    padding-bottom: 2em;
 }
 
 .notes-list-item-delete-no {
@@ -248,4 +261,5 @@ NOTES LIST ITEM FOOTER
     text-transform: uppercase;
     font-weight: 700;
     margin-top: 1em;
+    opacity: 0.5;
 }
