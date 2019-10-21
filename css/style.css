@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,700&display=swap');
+
+:root {
+    --myBackground: #132833;
+    --fontColor: #707070;
+    --myRed: #ff7070;
+    --myGreen: #89dfb4;
+    --myRadius: 10px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+    font-family: "Noto Sans SC", sans-serif;
+    font-weight: 400;
+    background-color: var(--myBackground);
+}
+
+/***************
+CONTAINERS
+***************/
+.wrap {
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+/***************
+TYPOGRAPHY
+***************/
+h1 {
+    font-size: 4rem;
+    color: white;
+    padding: 0.5em 0;
+}
+
+/***************
+CREATE BOX
+***************/
+#create-box,
+.notes-list-item {
+    background-color: #efefef;
+    border-radius: var(--myRadius);
+    padding: 2em;
+}
+
+
+/***************
+MORE BOX
+***************/
+.more-box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.dots {
+    font-size: 2em;
+    color: var(--fontColor);
+    position: relative;
+    right: -0.5em;
+}
+
+.dots:hover {
+    cursor: pointer;
+}
+
+.filter-box {
+    display: flex;
+    visibility: hidden;
+    position: relative;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.filter-box input {
+    border-radius: var(--myRadius);
+    border: 0;
+    padding: 2em;
+    width: 70%;
+}
+
+/***************
+BUTTONS
+***************/
+.clear-all {
+    background-color: var(--myRed);
+    border: 0;
+    color: white;
+    border-radius: var(--myRadius);
+    font-size: 1.2em;
+    padding: 1em;
+    margin-left: 1em;
+    width: 30%;
+    font-weight: 700;
+    text-align: center;
+}
+
+.clear-all:hover {
+    cursor: pointer;
+}
+
+.create-btn {
+    text-align: center;
+    width: 100%;    
+    background-color: var(--myGreen);
+    border: 0;
+    color: white;
+    padding: 1.5em 0;
+    border-radius: var(--myRadius);
+    font-size: 1.2rem;
+    margin-top: 2em;
+    font-weight: 700;
+}
+
+.create-btn:hover {
+    cursor: pointer;
+}
+
+/***************
+NOTE TITLE
+***************/
+.title-input-box,
+.subtext-input-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    width: 100%;
+}
+
+.title-input-container,
+.subtext-input-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#note-title,
+#note-subtext {
+    border-radius: var(--myRadius);
+    border: 0;
+    padding-left: 1em;
+    width: 100%;
+    padding: 2em;
+}
+
+/***************
+NOTES LIST
+***************/
+
+#notes-list {
+    position: relative;
+}
+
+.notes-list-close {
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+    font-size: 2rem;
+    color: var(--fontColor);
+    z-index: 9999;
+}
+
+
+.notes-list-close:hover {
+    cursor: pointer;
+}
+
+.notes-list-item {
+    position: relative;
+    margin-top: 2em;
+}
+
+
+.notes-list-item-delete {
+    position: absolute;
+    background-color: var(--myRed);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: var(--myRadius);
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    z-index: 99999;
+}
+
+.notes-list-item-delete-title {
+    flex: 0 0 100%;
+    text-align: center;
+    padding-top: 1em;
+}
+
+.notes-list-item-delete-options {
+    display: flex;
+    padding-bottom: 1em;
+}
+
+.notes-list-item-delete-no {
+    margin-left: 1em;
+}
+
+.notes-list-item-delete-yes:hover,
+.notes-list-item-delete-no:hover {
+    cursor: pointer;
+}
+
+/***************
+NOTES LIST ITEM TEXT
+***************/
+.notes-list-item-text {
+}
+
+.notes-list-item-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--fontColor);
+}
+
+.notes-list-item-subtext {
+    margin-top: 0.5em;
+    color: var(--fontColor);
+}
+
+/***************
+NOTES LIST ITEM FOOTER
+***************/
+#notes-list-item-footer {
+    display: flex;
+    justify-content: flex-end;
+    color: var(--fontColor);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 1em;
+}

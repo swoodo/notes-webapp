@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Notes</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="wrap">
+        <div id="title">
+            <h1>Notes</h1>
+        </div>
+
+        <div id="create-box">
+            <form id="note-form">
+                <!-- More Box -->
+                <div class="more-box">
+                    <div class="filter-box">
+                        <input type="text" name="filter" id="filter" placeholder="Filter Notes">
+                        <label for="filter"></label>
+                        <div class="clear-all">Clear All</div>
+                    </div>
+                    <div class="dots">
+                        <i class="fi-xwsrxl-ellipsis"></i>
+                    </div> 
+                </div>
+                <!-- Title Input Box-->
+                <div class="title-input-box">
+                    <div class="title-input-container">
+                        <input type="text" name="note-title" id="note-title" placeholder="New Note">
+                        <label for="note-title"></label>
+                    </div>
+                </div>
+                <!-- Subtext Input Box-->
+                <div class="subtext-input-box">
+                    <div class="subtext-input-container">
+                        <input type="text" name="note-subtext" id="note-subtext" placeholder="Sub Text">
+                        <label for="note-subtext"></label>
+                    </div>
+                </div>
+                <!-- Create Box -->
+                <div class="create-btn-box">
+                    <div class="create-btn">Create Note</div>
+                </div>
+            </form>
+        </div>
+
+        <!-- List of Notes -->
+        <ul id="notes-list">
+            
+            <li class="notes-list-item">
+                <!-- X button -->
+                <div class="notes-list-close">
+                    <i class="fi-xnsuxl-times-solid notes-list-close-icon"></i>
+                </div>
+                <!-- Are You Sure? -->
+                <div class="notes-list-item-delete">
+                    <div class="notes-list-item-delete-title">
+                        Are you sure?
+                    </div>
+                    <div class="notes-list-item-delete-options">
+                        <div class="notes-list-item-delete-yes">Yes</div>
+                        <div class="notes-list-item-delete-no">No</div>
+                    </div>
+                </div>
+                <!-- Note text -->
+                <div id="notes-list-item-text">
+                    <div class="notes-list-item-title">
+                        Title of Note
+                    </div>
+                    <div class="notes-list-item-subtext">
+                        Subtext of note goes here
+                    </div>
+                </div>
+
+                <div id="notes-list-item-footer">
+                    <div class="date">oct 30 2019</div>
+                    <div class="time">, 12:00</div>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+
+<script defer src="https://friconix.com/cdn/friconix.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
