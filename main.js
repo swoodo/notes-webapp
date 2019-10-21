@@ -182,3 +182,44 @@ function deleteListItem(e) {
     let myTarget = e.target.parentElement.parentElement.parentElement;
     myTarget.remove();
 }
+
+//Clear all Button
+const clearAllBtn = document.querySelector('.clear-all');
+
+clearAllBtn.addEventListener('click', clearAll);
+
+function clearAll(e) {
+    //get list of notes
+    let myTarget = e.target.parentElement.parentElement.parentElement.parentElement.parentElement;
+    
+    const notes =  myTarget.querySelectorAll('.notes-list-item');
+
+    //loop through notes list
+    for(let i = 0; i < notes.length; i++) {
+        notes[i].remove();
+    }
+
+    e.preventDefault();
+}
+
+//Filter Notes
+const filterInput = document.getElementById('filter');
+
+filterInput.addEventListener('keyup', filterNotes);
+
+function filterNotes(e) {
+    const filterUserInput = e.target.value;
+    
+    //loop through lists
+    const notesList = document.querySelectorAll('.notes-list-item');
+
+    for (let i = 0; i < notesList.length; i++) {
+       let notesTitle = notesList[i].querySelector('.notes-list-item-title');
+
+       if (notesTitle.textContent.toLowerCase().indexOf(filterUserInput.toLowerCase()) != -1) {
+            notesList[i].style.display='block';
+       } else {
+           notesList[i].style.display='none';
+       }
+    }
+}
