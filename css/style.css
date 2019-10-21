@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC:400,700&display=swap');
 
 :root {
-    --myBackground: #132833;
+    --myBackground: #4B00AB;
     --fontColor: #707070;
-    --myRed: #ff7070;
-    --myGreen: #89dfb4;
+    --myRed: #FE4873;
+    --myGreen: #FDB93C;
     --myRadius: 10px;
 }
 
@@ -41,6 +41,7 @@ h1 {
     font-size: 4rem;
     color: white;
     padding: 0.5em 0;
+    text-align: center;
 }
 
 /***************
@@ -51,6 +52,7 @@ CREATE BOX
     background-color: #efefef;
     border-radius: var(--myRadius);
     padding: 2em;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -107,6 +109,7 @@ BUTTONS
     width: 40%;
     font-weight: 700;
     text-align: center;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .clear-all:hover {
@@ -114,7 +117,7 @@ BUTTONS
 }
 
 .clear-all:active {
-    background-color: #bf4b4b;
+    box-shadow: none;
 }
 
 .clear-all-popup {
@@ -184,15 +187,17 @@ BUTTONS
     font-size: 1.2rem;
     margin-top: 2em;
     font-weight: 700;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .create-btn:hover {
     cursor: pointer;
-    opacity: 0.9;
+
 }
 
 .create-btn:active {
-    background-color: #6eb592;
+    
+    box-shadow: none;
 }
 
 /***************
@@ -299,14 +304,16 @@ NOTES LIST ITEM TEXT
 
 .notes-list-item-title {
     font-size: 3rem;
-    line-height: 3rem;
+    line-height: 3.8rem;
     font-weight: 700;
     color: var(--fontColor);
+    text-align: center;
 }
 
 .notes-list-item-subtext {
     margin-top: 2em;
     color: var(--fontColor);
+    text-align: center;
 }
 
 /***************
@@ -318,8 +325,9 @@ NOTES LIST ITEM FOOTER
     color: var(--fontColor);
     text-transform: uppercase;
     font-weight: 700;
-    margin-top: 1em;
+    padding-top: 2em;
     opacity: 0.5;
+    font-size: 0.7rem;
 }
 
 @media only screen and (min-width: 780px) {
