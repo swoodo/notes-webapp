@@ -134,11 +134,9 @@ function createNote(e) {
         //taget the new note
         myTarget = notesList[notesList.length - 1];
 
-        console.log(myTarget);
         // delete btn event listener
         let deleteBtn = myTarget.querySelector('.notes-list-close-icon');
 
-        console.log(deleteBtn);
         
         deleteBtn.addEventListener('click', showDelete);
 
@@ -149,11 +147,9 @@ function createNote(e) {
 
 // Show the note list delete menu
 function showDelete(e) {
-    console.log("WORKING");
     let deleteOption = e.target.parentElement.parentElement.querySelector('.notes-list-item-delete');
     let myTarget = e.target.parentElement.parentElement; 
 
-    console.log(myTarget);
     
     // make sure clicking the icon
     if (myTarget.classList.contains('notes-list-item')) {
@@ -185,19 +181,38 @@ function deleteListItem(e) {
 
 //Clear all Button
 const clearAllBtn = document.querySelector('.clear-all');
+const clearPopup = document.querySelector('.clear-all-popup');
 
-clearAllBtn.addEventListener('click', clearAll);
+clearAllBtn.addEventListener('click', revealClearPopup);
+
+function revealClearPopup(e) {
+    let myTarget = e.target.parentElement;
+    let clearYes = myTarget.querySelector('.clear-all-popup-yes');
+
+    let clearNo = myTarget.querySelector('.clear-all-popup-no');
+
+
+    clearPopup.style.display = 'block';
+    clearYes.addEventListener('click', clearAll);
+
+    clearNo.addEventListener('click', function(){
+        clearPopup.style.display = 'none';
+    });
+
+    e.preventDefault();
+}
 
 function clearAll(e) {
-    //get list of notes
-    let myTarget = e.target.parentElement.parentElement.parentElement.parentElement.parentElement;
-    
+    //get list of note
+    let myTarget = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
     const notes =  myTarget.querySelectorAll('.notes-list-item');
 
     //loop through notes list
     for(let i = 0; i < notes.length; i++) {
         notes[i].remove();
     }
+
+    clearPopup.style.display = 'none';
 
     e.preventDefault();
 }

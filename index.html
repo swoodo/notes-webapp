@@ -16,13 +16,30 @@
         </div>
 
         <div id="create-box">
+            
             <form id="note-form">
                 <!-- More Box -->
                 <div class="more-box">
                     <div class="filter-box">
                         <input type="text" name="filter" id="filter" placeholder="Filter Notes">
                         <label for="filter"></label>
-                        <button class="clear-all">Clear</button>
+                        
+                        <div class="clear-all-popup">
+                            <div class="clear-all-popup-title">Are you sure?</div>
+                            <div class="clear-all-popup-options">
+                                <div class="clear-all-popup-yes">
+                                    Yes
+                                </div>
+                                <div class="clear-all-popup-no">
+                                    No
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="clear-all">
+                            Clear
+                        </div>
                     </div>
                     <div class="dots">
                         <i class="fas fa-ellipsis-v"></i>
@@ -45,6 +62,7 @@
                 <!-- Create Box -->
                 <div class="create-btn-box">
                     <button class="create-btn">Create</button>
+
                 </div>
             </form>
         </div>

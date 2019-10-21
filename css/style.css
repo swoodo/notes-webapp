@@ -87,12 +87,15 @@ MORE BOX
     border-radius: var(--myRadius);
     border: 0;
     padding: 2em;
-    width: 70%;
+    width: 60%;
 }
 
 /***************
 BUTTONS
 ***************/
+.clear-all-box {
+    position: relative;
+}
 .clear-all {
     background-color: var(--myRed);
     border: 0;
@@ -101,21 +104,75 @@ BUTTONS
     font-size: 1.2em;
     padding: 1em;
     margin-left: 1em;
-    width: 30%;
+    width: 40%;
     font-weight: 700;
     text-align: center;
 }
 
 .clear-all:hover {
     cursor: pointer;
-    opacity: 0.9;
-
 }
 
 .clear-all:active {
     background-color: #bf4b4b;
 }
 
+.clear-all-popup {
+    display: none;
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    background: white;
+    top: -8.7em;
+    right: -1.5em;
+    z-index: 9999;
+    border-radius: var(--myRadius);
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+
+    color: var(--fontColor);
+    padding-top: 2em;
+    text-align: center;
+
+}
+
+.clear-all-popup::after {
+    content: "";
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid white; 
+    position: absolute;
+    bottom: -1em;
+
+}
+
+.clear-all-popup-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.clear-all-popup-options {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+.clear-all-popup-no {
+    margin-left: 2em;
+}
+
+.clear-all-popup-no:hover {
+    cursor: pointer;
+}
+
+.clear-all-popup-yes:hover {
+    cursor: pointer;
+}
+
+.create-btn-box {
+    position: relative;
+}
 .create-btn {
     text-align: center;
     width: 100%;    
