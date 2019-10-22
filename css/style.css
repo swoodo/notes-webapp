@@ -316,7 +316,7 @@ NOTES LIST ITEM TEXT
 }
 
 .notes-list-item-subtext {
-    margin-top: 2em;
+    margin-top: 1em;
     color: var(--fontColor);
     text-align: center;
 }
