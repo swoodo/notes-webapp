@@ -27,7 +27,7 @@ createNoteBtn.addEventListener('click', createNote);
 
 function createNote(e) {
     //check if loading from local storage
-    //if loading from LS, set bool
+    //if loading from LS, set title values and bool
     let loadingFromLS;
     if (Array.isArray(e)) {
         noteTitleInput.value = e[0];
