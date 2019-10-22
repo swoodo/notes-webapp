@@ -1,2 +1,2 @@
 # notes-webapp
-Notes Webapp
+Notes app using plain html, css, and javascript
