@@ -17,9 +17,6 @@ function revealFilter(e) {
 }
 
 
-
-
-
 // CREATE NEW NOTE
 //////////////////
 const createNoteBtn = document.querySelector('.create-btn');
@@ -455,6 +452,9 @@ function clearAll(e) {
     }
 
     clearPopup.style.display = 'none';
+
+    //clear from LS
+    localStorage.clear();
 
     e.preventDefault();
 }
