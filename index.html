@@ -71,11 +71,29 @@
         <ul id="notes-list">
             
             <!-- <li class="notes-list-item">
-                <!- - X button - ->
                 <div class="notes-list-close">
-                    <i class="fi-xnsuxl-times-solid notes-list-close-icon"></i>
+                    <i class="fa fa-times notes-list-close-icon"></i>
+                    <i class="fa fa-edit notes-list-edit-icon"></i>
                 </div>
-                <!- - Are You Sure? - ->
+                <div class="notes-list-item-edit">
+                    <form id="edit-form">
+                        <div class="edit-form-title">
+                            Edit Note
+                        </div>
+                        <div class="note-edit-title-container">
+                            <input type="text" name="note-edit-title" id="note-edit-title" placeholder="New Title">
+                            <label for="note-edit-title"></label>  
+                        </div>
+                        <div class="note-edit-subtext-container">
+                            <input type="text" name="note-edit-subtext" id="note-edit-subtext" placeholder="New Subtitle">
+                            <label for="note-edit-subtext"></label>  
+                        </div>
+                        <div class="note-edit-button-container">
+                            <div class="edit-save">Save</div>
+                            <div class="edit-discard">Discard</div>
+                        </div>
+                    </form>
+                </div>
                 <div class="notes-list-item-delete">
                     <div class="notes-list-item-delete-title">
                         Are you sure?
@@ -85,7 +103,6 @@
                         <div class="notes-list-item-delete-no">No</div>
                     </div>
                 </div>
-                <!- - Note text - ->
                 <div id="notes-list-item-text">
                     <div class="notes-list-item-title">
                         Title of Note

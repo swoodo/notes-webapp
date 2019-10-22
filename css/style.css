@@ -95,6 +95,8 @@ MORE BOX
 /***************
 BUTTONS
 ***************/
+
+
 .clear-all-box {
     position: relative;
 }
@@ -109,7 +111,6 @@ BUTTONS
     width: 40%;
     font-weight: 700;
     text-align: center;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 .clear-all:hover {
@@ -221,13 +222,16 @@ NOTE TITLE
 }
 
 #note-title,
-#note-subtext {
+#note-subtext
+ {
     border-radius: var(--myRadius);
     border: 0;
     padding-left: 1em;
     width: 100%;
     padding: 2em;
 }
+
+
 
 /***************
 NOTES LIST
@@ -315,7 +319,93 @@ NOTES LIST ITEM TEXT
     color: var(--fontColor);
     text-align: center;
 }
+/***************
+NOTES LIST EDIT ITEM
+***************/
+.notes-list-edit-icon {
+    margin-left: 0.5em;
+}
 
+.notes-list-item-edit{
+    position: absolute;
+    background-color: var(--myGreen);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: var(--myRadius);
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    z-index: 99999;
+}
+
+#edit-form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2em;
+}
+
+.edit-form-title {
+    padding: 1em;
+    display: none;
+}
+
+.note-edit-title-container {
+    padding-top: 1em;
+}
+
+.note-edit-title-container,
+.note-edit-subtext-container {
+    flex: 1 0 100%; 
+    display: flex;   
+    justify-content: center;
+}
+
+.note-edit-subtext-container {
+}
+
+#note-edit-title,
+#note-edit-subtext {
+    padding: 2em;
+    border: none;
+    border-radius: var(--myRadius);
+    width: 100%;
+}
+
+#note-edit-title {
+
+}
+
+
+.note-edit-button-container {
+    flex: 1 0 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-save,
+.edit-discard {
+    font-size: 1rem;
+    padding-bottom: 1em;
+}
+
+.edit-save:hover,
+.edit-discard:hover {
+    cursor: pointer;
+}
+
+.edit-discard {
+    margin-left: 1em;
+}
 /***************
 NOTES LIST ITEM FOOTER
 ***************/

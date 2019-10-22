@@ -40,10 +40,90 @@ function createNote(e) {
         //create icon
         const xIcon = document.createElement('i');
         xIcon.className = 'fas fa-times notes-list-close-icon';
+        //create edit button
+        const editIcon = document.createElement('i');
+        editIcon.className = 'fas fa-edit notes-list-edit-icon';
         //append to xBtn
         xBtn.appendChild(xIcon);
+        xBtn.appendChild(editIcon);
         //append to li
         li.appendChild(xBtn);
+
+        //create 'edit menu' box
+        const editMenuDiv = document.createElement('div');
+        editMenuDiv.className = 'notes-list-item-edit';
+        //ceate edit form
+        const editForm = document.createElement('form');
+        editForm.id = 'edit-form';
+        //create edit form title
+        const editFormTitle = document.createElement('div');
+        editFormTitle.className = 'edit-form-title';
+        editFormTitle.appendChild(document.createTextNode('Edit Note'));
+        //append to edit form
+        editForm.appendChild(editFormTitle);
+
+        //create edit form title container div
+        const editFormTitleContainer = document.createElement('div');
+        editFormTitleContainer.className = 'note-edit-title-container';
+        //make input
+        const noteNewTitle = document.createElement('input');
+        noteNewTitle.id = 'note-edit-title';
+        noteNewTitle.setAttribute('type', 'text');
+        noteNewTitle.setAttribute('name', 'note-edit-title');
+        noteNewTitle.setAttribute('placeholder', 'New Title');
+        //append input to title container
+        editFormTitleContainer.appendChild(noteNewTitle);
+        //create label for new title
+        const newTitleLabel = document.createElement('label');
+        newTitleLabel.setAttribute('for', 'note-edit-title');
+        //append label to title container
+        editFormTitleContainer.appendChild(newTitleLabel);
+        //append title container to form
+        editForm.appendChild(editFormTitleContainer);
+
+        //create edit form SUBTEXT container div
+        const editFormSubtextContainer = document.createElement('div');
+        editFormSubtextContainer.className = 'note-edit-subtext-container';
+        //make input
+        const noteNewSubtext = document.createElement('input');
+        noteNewSubtext.id = 'note-edit-subtext';
+        noteNewSubtext.setAttribute('type', 'text');
+        noteNewSubtext.setAttribute('name', 'note-edit-subtext');
+        noteNewSubtext.setAttribute('placeholder', 'New Subtitle');
+        //append input to subtext container
+        editFormSubtextContainer.appendChild(noteNewSubtext);
+        //create label for new subtext
+        const newSubtextLabel = document.createElement('label');
+        newSubtextLabel.setAttribute('for', 'note-edit-subtext');
+        //append label to subtext container
+        editFormSubtextContainer.appendChild(newSubtextLabel);
+        //append subtext container to form
+        editForm.appendChild(editFormSubtextContainer);
+
+        //create edit buttons container
+        const editButtons = document.createElement('div');
+        editButtons.className = 'note-edit-button-container';
+        //create edit save div
+        const editSaveBtn = document.createElement('div');
+        editSaveBtn.className = 'edit-save';
+        editSaveBtn.appendChild(document.createTextNode('Save'));
+        //append save button to container
+        editButtons.appendChild(editSaveBtn);
+
+        //create edit discard div
+        const editDiscardBtn = document.createElement('div');
+        editDiscardBtn.className = 'edit-discard';
+        editDiscardBtn.appendChild(document.createTextNode('Discard'));
+        //append discard button to container
+        editButtons.appendChild(editDiscardBtn);
+
+        //append edit buttons to form
+        editForm.appendChild(editButtons);
+
+        //append form to editMenuDiv
+        editMenuDiv.appendChild(editForm);
+        //append editMenuDiv to li
+        li.appendChild(editMenuDiv);
 
         //create 'are you sure box'
         const deleteBox = document.createElement('div');
@@ -137,12 +217,66 @@ function createNote(e) {
         // delete btn event listener
         let deleteBtn = myTarget.querySelector('.notes-list-close-icon');
 
-        
+        // edit btn event listener
+        let editBtn = myTarget.querySelector('.notes-list-edit-icon');
+
         deleteBtn.addEventListener('click', showDelete);
+        editBtn.addEventListener('click', showEdit);
 
     }
 
     e.preventDefault();
+}
+
+// Show the edit note menu
+function showEdit(e) {
+    let myTarget= e.target.parentElement.parentElement;
+
+    const editMenu = myTarget.querySelector('.notes-list-item-edit');
+    const saveBtn = myTarget.querySelector('.edit-save');
+    const discardBtn = myTarget.querySelector('.edit-discard');
+
+    let newTitleInput = myTarget.querySelector('#note-edit-title');
+    let newSubtextInput = myTarget.querySelector('#note-edit-subtext');
+
+    //show menu
+    editMenu.style.display = 'flex';
+
+    //btn event listeners and functions
+    discardBtn.addEventListener('click', function() {
+        editMenu.style.display = 'none';
+        //clear incase of input
+        newTitleInput.value = '';
+        newSubtextInput.value = '';
+    });
+
+    saveBtn.addEventListener('click', function() {
+        // dont do anything if no input
+        if (newTitleInput.value || newSubtextInput.value) {
+            ('#note-edit-subtext');
+            let oldTitleInput = myTarget.querySelector('.notes-list-item-title');
+            let oldSubtextInput = myTarget.querySelector('.notes-list-item-subtext');
+
+            //replace title if new entered
+            if (newTitleInput.value != '') {
+                oldTitleInput.innerHTML = newTitleInput.value;
+            } 
+            if (newSubtextInput.value != '') {
+                oldSubtextInput.innerHTML = newSubtextInput.value;
+            }
+
+            //hide menu
+            editMenu.style.display = 'none';
+        }
+
+        //clear incase of input
+        newTitleInput.value = '';
+        newSubtextInput.value = '';
+        
+    });
+
+    e.preventDefault();
+
 }
 
 // Show the note list delete menu
