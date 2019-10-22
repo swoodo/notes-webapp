@@ -23,12 +23,21 @@ function revealFilter(e) {
 // CREATE NEW NOTE
 //////////////////
 const createNoteBtn = document.querySelector('.create-btn');
-const noteTitleInput = document.querySelector('#note-title');
-const noteSubtextInput = document.querySelector('#note-subtext')
+let noteTitleInput = document.querySelector('#note-title');
+let noteSubtextInput = document.querySelector('#note-subtext')
 
 createNoteBtn.addEventListener('click', createNote);
 
 function createNote(e) {
+    //check if loading from local storage
+    //if loading from LS, set bool
+    let loadingFromLS;
+    if (Array.isArray(e)) {
+        noteTitleInput.value = e[0];
+        noteSubtextInput.value = e[1];
+        loadingFromLS = true;
+    }
+
     if (noteTitleInput.value != '') {
         //create li
         const li = document.createElement('li');
@@ -198,8 +207,15 @@ function createNote(e) {
 
         //APPEND LI TO UL
         //get UL in target
-        let myTarget = e.target.parentElement.parentElement.parentElement.parentElement;
-
+        let myTarget;
+        //check loading from LS
+        if (loadingFromLS) {
+            myTarget = document.querySelector('.wrap');
+        }
+        else {
+            myTarget =      e.target.parentElement.parentElement.parentElement.parentElement;
+        }
+        
         const ul = myTarget.querySelector('#notes-list');
 
         ul.appendChild(li);
@@ -221,7 +237,9 @@ function createNote(e) {
         editBtn.addEventListener('click', showEdit);
 
         //store input in Local Storage
-        storeInputInLocalStorage(noteTitleInput.value, noteSubtextInput.value);
+        if (!loadingFromLS) {
+            storeInputInLocalStorage(noteTitleInput.value, noteSubtextInput.value);
+        }
 
          //clear input
          noteTitleInput.value = '';
@@ -229,7 +247,35 @@ function createNote(e) {
  
     }
 
-    e.preventDefault();
+    if (!loadingFromLS) {
+        e.preventDefault();
+    }
+}
+
+loadFromLocalStorage();
+
+// load from local storage function 
+function loadFromLocalStorage() {
+    let notes;
+    // check LS
+    if (localStorage.getItem('notes') === null) {
+        notes = [];
+    } else {
+        notes = JSON.parse(localStorage.getItem('notes'));
+
+        //loop though notes and create items
+        for (let i = 0; i < notes.length; i++) {
+            // set title and subtext to arr
+            let note = [];
+            let myTitle = notes[i].title;
+            let mySubtext = notes[i].subtext;
+            note.push(myTitle);
+            note.push(mySubtext);
+        
+            // create note
+            createNote(note);
+        }
+    }
 }
 
 // store in local storage function
@@ -251,11 +297,6 @@ function storeInputInLocalStorage(myTitle, mySubtext) {
     localStorage.setItem('notes', JSON.stringify(notes));
 }
 
-//load notes from local storage
-function loadFromLocalStorage() {
-    
-}
-
 // Show the edit note menu
 function showEdit(e) {
     let myTarget= e.target.parentElement.parentElement;
@@ -270,11 +311,11 @@ function showEdit(e) {
     let oldTitleInput = myTarget.querySelector('.notes-list-item-title');
     let oldSubtextInput = myTarget.querySelector('.notes-list-item-subtext');
 
+
     //display old values to edit
     newTitleInput.value = oldTitleInput.textContent;
     newSubtextInput.value = oldSubtextInput.textContent;
 
-    console.log(oldTitleInput);
 
     //show menu
     editMenu.style.display = 'flex';
@@ -290,7 +331,19 @@ function showEdit(e) {
     saveBtn.addEventListener('click', function() {
         // dont do anything if no input
         if (newTitleInput.value) {
-            ('#note-edit-subtext');
+            // find in Local storage
+            let storage = JSON.parse(localStorage.getItem('notes'));
+
+            for (let i = 0; i < storage.length; i++) {
+                if (storage[i].title === oldTitleInput.textContent && storage[i].subtext === oldSubtextInput.textContent) {
+                    //update LS item info
+                    storage[i].title = newTitleInput.value;
+                    storage[i].subtext = newSubtextInput.value;
+                }
+            }
+            //update LS
+            localStorage.setItem('notes', JSON.stringify(storage));
+
             //replace title if new entered
             if (newTitleInput.value != '') {
                 oldTitleInput.innerHTML = newTitleInput.value;
