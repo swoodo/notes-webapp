@@ -473,8 +473,9 @@ function filterNotes(e) {
 
     for (let i = 0; i < notesList.length; i++) {
        let notesTitle = notesList[i].querySelector('.notes-list-item-title');
+       let notesSubtext = notesList[i].querySelector('.notes-list-item-subtext');
 
-       if (notesTitle.textContent.toLowerCase().indexOf(filterUserInput.toLowerCase()) != -1) {
+       if (notesTitle.textContent.toLowerCase().indexOf(filterUserInput.toLowerCase()) != -1 || notesSubtext.textContent.toLowerCase().indexOf(filterUserInput.toLowerCase()) != -1) {
             notesList[i].style.display='block';
        } else {
            notesList[i].style.display='none';
