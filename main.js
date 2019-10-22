@@ -204,10 +204,7 @@ function createNote(e) {
 
         ul.appendChild(li);
 
-        //clear input
-        noteTitleInput.value = '';
-        noteSubtextInput.value = '';
-
+       
         // get list of li elements
         let notesList = document.querySelectorAll('.notes-list-item');
 
@@ -223,9 +220,40 @@ function createNote(e) {
         deleteBtn.addEventListener('click', showDelete);
         editBtn.addEventListener('click', showEdit);
 
+        //store input in Local Storage
+        storeInputInLocalStorage(noteTitleInput.value, noteSubtextInput.value);
+
+         //clear input
+         noteTitleInput.value = '';
+         noteSubtextInput.value = '';
+ 
     }
 
     e.preventDefault();
+}
+
+// store in local storage function
+function storeInputInLocalStorage(myTitle, mySubtext) {
+    let noteObj = {
+        title: myTitle,
+        subtext: mySubtext
+    };
+
+    let notes;
+    if (localStorage.getItem('notes') === null) {
+        notes = [];
+    } else {
+        notes = JSON.parse(localStorage.getItem('notes'));
+    }
+
+    notes.push(noteObj);
+
+    localStorage.setItem('notes', JSON.stringify(notes));
+}
+
+//load notes from local storage
+function loadFromLocalStorage() {
+    
 }
 
 // Show the edit note menu
@@ -238,6 +266,15 @@ function showEdit(e) {
 
     let newTitleInput = myTarget.querySelector('#note-edit-title');
     let newSubtextInput = myTarget.querySelector('#note-edit-subtext');
+
+    let oldTitleInput = myTarget.querySelector('.notes-list-item-title');
+    let oldSubtextInput = myTarget.querySelector('.notes-list-item-subtext');
+
+    //display old values to edit
+    newTitleInput.value = oldTitleInput.textContent;
+    newSubtextInput.value = oldSubtextInput.textContent;
+
+    console.log(oldTitleInput);
 
     //show menu
     editMenu.style.display = 'flex';
@@ -252,18 +289,15 @@ function showEdit(e) {
 
     saveBtn.addEventListener('click', function() {
         // dont do anything if no input
-        if (newTitleInput.value || newSubtextInput.value) {
+        if (newTitleInput.value) {
             ('#note-edit-subtext');
-            let oldTitleInput = myTarget.querySelector('.notes-list-item-title');
-            let oldSubtextInput = myTarget.querySelector('.notes-list-item-subtext');
-
             //replace title if new entered
             if (newTitleInput.value != '') {
                 oldTitleInput.innerHTML = newTitleInput.value;
             } 
-            if (newSubtextInput.value != '') {
-                oldSubtextInput.innerHTML = newSubtextInput.value;
-            }
+            
+            oldSubtextInput.innerHTML = newSubtextInput.value;
+
 
             //hide menu
             editMenu.style.display = 'none';
