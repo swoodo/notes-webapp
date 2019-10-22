@@ -35,6 +35,7 @@ function createNote(e) {
         loadingFromLS = true;
     }
 
+    // title is required for new note
     if (noteTitleInput.value != '') {
         //create li
         const li = document.createElement('li');
@@ -217,7 +218,6 @@ function createNote(e) {
 
         ul.appendChild(li);
 
-       
         // get list of li elements
         let notesList = document.querySelectorAll('.notes-list-item');
 
@@ -250,6 +250,7 @@ function createNote(e) {
     }
 }
 
+// load from local storage
 loadFromLocalStorage();
 
 // load from local storage function 
@@ -282,7 +283,7 @@ function deleteFromLocalStorage(myTitle, mySubtitle) {
 
     for (let i = 0; i < storage.length; i++) {
         if (storage[i].title === myTitle && storage[i].subtext === mySubtitle) {
-            //update LS item info
+            //delete from LS
             storage.splice(i, 1);
         }
     }
