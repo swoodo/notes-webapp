@@ -237,16 +237,17 @@ function createNote(e) {
         editBtn.addEventListener('click', showEdit);
 
         //store input in Local Storage
+        //dont store if loading from LS
         if (!loadingFromLS) {
             storeInputInLocalStorage(noteTitleInput.value, noteSubtextInput.value);
         }
 
-         //clear input
-         noteTitleInput.value = '';
-         noteSubtextInput.value = '';
- 
+        //clear input
+        noteTitleInput.value = '';
+        noteSubtextInput.value = '';
     }
 
+    //dont prevent default if loading from LS
     if (!loadingFromLS) {
         e.preventDefault();
     }
@@ -276,6 +277,21 @@ function loadFromLocalStorage() {
             createNote(note);
         }
     }
+}
+
+// delete from local storage function
+function deleteFromLocalStorage(myTitle, mySubtitle) {
+    let storage = JSON.parse(localStorage.getItem('notes'));
+
+    for (let i = 0; i < storage.length; i++) {
+        if (storage[i].title === myTitle && storage[i].subtext === mySubtitle) {
+            //update LS item info
+            storage.splice(i, 1);
+        }
+    }
+
+    //update LS
+    localStorage.setItem('notes', JSON.stringify(storage));
 }
 
 // store in local storage function
@@ -398,6 +414,11 @@ function hideDelete(e) {
 function deleteListItem(e) {
     let myTarget = e.target.parentElement.parentElement.parentElement;
     myTarget.remove();
+
+    const myTitle = myTarget.querySelector('.notes-list-item-title');
+    const mySubtext = myTarget.querySelector('.notes-list-item-subtext');
+
+    deleteFromLocalStorage(myTitle.textContent, mySubtext.textContent);
 }
 
 //Clear all Button
