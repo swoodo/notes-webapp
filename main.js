@@ -29,9 +29,11 @@ function createNote(e) {
     //check if loading from local storage
     //if loading from LS, set title values and bool
     let loadingFromLS;
+    let noteDate;
     if (Array.isArray(e)) {
         noteTitleInput.value = e[0];
         noteSubtextInput.value = e[1];
+        noteDate = e[2];
         loadingFromLS = true;
     }
 
@@ -59,7 +61,7 @@ function createNote(e) {
         //create 'edit menu' box
         const editMenuDiv = document.createElement('div');
         editMenuDiv.className = 'notes-list-item-edit';
-        //ceate edit form
+        //create edit form
         const editForm = document.createElement('form');
         editForm.id = 'edit-form';
         //create edit form title
@@ -178,9 +180,16 @@ function createNote(e) {
 
         //Create notes footer
         //create date
-        const dateOfNote = new Date();
-        const dateArr = dateOfNote.toDateString().split(' ');
-        const dateInWords = dateArr[2] + ' ' + dateArr[1] + ' ' + dateArr[3];
+        let dateInWords;
+        if (!loadingFromLS) {
+            const dateOfNote = new Date();
+            const dateArr = dateOfNote.toDateString().split(' ');
+            dateInWords = dateArr[2] + ' ' + dateArr[1] + ' ' + dateArr[3];
+        }
+        else {
+            dateInWords = noteDate;
+        }
+        
         
         const notesFooter = document.createElement('div');
         notesFooter.id = 'notes-list-item-footer';
@@ -236,7 +245,7 @@ function createNote(e) {
         //store input in Local Storage
         //dont store if loading from LS
         if (!loadingFromLS) {
-            storeInputInLocalStorage(noteTitleInput.value, noteSubtextInput.value);
+            storeInputInLocalStorage(noteTitleInput.value, noteSubtextInput.value, dateInWords);
         }
 
         //clear input
@@ -268,8 +277,10 @@ function loadFromLocalStorage() {
             let note = [];
             let myTitle = notes[i].title;
             let mySubtext = notes[i].subtext;
+            let myDate = notes[i].date;
             note.push(myTitle);
             note.push(mySubtext);
+            note.push(myDate);
         
             // create note
             createNote(note);
@@ -293,10 +304,11 @@ function deleteFromLocalStorage(myTitle, mySubtitle) {
 }
 
 // store in local storage function
-function storeInputInLocalStorage(myTitle, mySubtext) {
+function storeInputInLocalStorage(myTitle, mySubtext, myDate) {
     let noteObj = {
         title: myTitle,
-        subtext: mySubtext
+        subtext: mySubtext,
+        date: myDate
     };
 
     let notes;
